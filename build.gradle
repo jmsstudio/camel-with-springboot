@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.6.RELEASE'
+		camelVersion = '2.19.2'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile("org.apache.camel:camel-spring-boot-starter:${camelVersion}")
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile group: 'org.apache.activemq', name: 'activemq-camel', version: '5.15.0'
+	compile group: 'org.apache.camel', name: 'camel-jms', version: camelVersion
+
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
